@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>연습문제2</title>
+    <style>
+        #container{
+            width:520px;
+            border:1px solid black;
+            padding:20px 40px;
+            margin:0 auto;
+        }
+        ul{list-style-type:none;}
+        li{line-height: 30px;}
+    </style>
+</head>
+<body>
+    <div id="container">
+            <h2>프런트엔드 개발자 지원서</h2>
+            <p>HTML, CSS, 자바스크립트의 기술을 이해하고 실무 경험이 있는 분을 찾습니다.
+            <hr>
+    <form>
+        <h4>개인정보</h4>
+            <ul>
+                <li>
+                    <label for="name">이름</label>
+                    <input type="text" id="name" placeholder="공백 없이 입력하세요">
+                </li>
+                <li>
+                    <label for="tel">연락처</label>
+                    <input type="tel" id="tel">
+                </li>
+            </ul>
+        <h4>지원 분야</h4>
+            <ul>
+                <li>
+                    <input type="radio" name="radio" id="wp" value="wp">
+                    <label for="wp">웹 퍼블리싱</label>
+                </li>
+                <li>
+                    <input type="radio" name="radio" id="wpd" value="wpd">
+                    <label for="wpd">웹 퍼블리싱 개발</label>
+                </li>
+                <li>
+                    <input type="radio" name="radio" id="de" value="de">
+                    <label for="de">개발 환경 개선</label>
+                </li>
+            </ul>
+        <h4>지원 동기</h4>
+            <textarea name="memo" id="textbox" placeholder="본사 지원 동기를 간략히 써 주세요" cols="60" rows="5"></textarea>
+            <br>
+            <input type="submit" value="접수하기" name="submit" id="submit">
+            <input type="reset" value="다시 쓰기" name="reset" id="reset">
+    </form>  
+</body>
+</html>
