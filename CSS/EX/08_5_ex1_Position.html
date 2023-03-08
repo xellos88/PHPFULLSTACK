@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Position</title>
+    <style>
+        main, section, article{
+            padding:20px ;
+        }
+        main{
+            background-color: red;
+            height: 1500px;
+        }
+        section{
+            background-color: orange;
+            position: relative;
+        }
+        article{
+            background-color: yellow;
+            /* height: 1500px; */
+        }
+        .div_static{
+            background-color: green;
+        }
+        .div_relative{
+            background-color: blue;
+            /* position: relative;
+            left: -30px; */
+        }
+        .div_absolute{ 
+            /* position: static 속성을 가지고 있지 않은 조상을 기준
+            relative, absolute, fixed인 태그가 없다면 가장 위의 태그(body)가 기준*/
+            background-color: navy;
+            /* position: absolute;
+            top: 30px; */
+        }
+        .div_fixed{
+            background-color: purple;
+            /* position: fixed;
+            bottom: 5%;
+            right: 5%; */
+        }
+        .div_sticky{
+            background-color: magenta;
+            position: sticky;
+            top: 0px;
+        }
+        
+    </style>
+</head>
+<body>
+    <main>
+        main
+        <section>
+            section
+            <article>
+                article
+                <div class="div_static">static</div>
+                <div class="div_relative">relative</div>
+                <div class="div_absolute">absolute</div>
+                <div class="div_fixed">fixed</div>
+                <div class="div_sticky">sticky</div>
+            </article>
+        </section>
+    </main>
+    
+</body>
+</html>
