@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+        }
+        form{
+            background-image: url(../EX/css/123.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        fieldset{
+            height: 350px;
+        }
+        legend{
+            color: magenta;
+        }
+        #name:focus{
+            border: 2px solid red;
+            outline: none;
+        }
+        #age:focus{
+            border: 2px solid red;
+            outline: none;
+        }
+        #textbox:focus{
+            border: 2px solid red;
+            outline: none;
+        }
+        .textbox{
+            vertical-align:top;
+        }
+        .name::before{
+            content: '*';
+            color: red;
+        }
+        .age::before{
+            content: '*';
+            color: red;
+        }
+        .radio::before{
+            content: '*';
+            color: red;
+        }
+        input:checked + #gender{
+            color: magenta;
+        }
+        input, textarea{background-color: transparent;}
+        button:hover+p {
+            display: block;
+        }
+        p{
+            margin: 0;
+            position: relative;
+            bottom: 25px;
+            left: 55px;
+            width: 250px;
+            background-color: #333;
+            color: white;
+            display: none;
+        }
+        .memo{
+            vertical-align: top;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form>
+            <fieldset>
+                <legend>I WANT YOU</legend>
+                <div>
+                    <label for="name" class="name">이름</label>
+                    <input type="text" id="name" required>
+                </div>
+                <br>
+                <div>
+                    <label for="age" class="age">나이</label>
+                    <input type="number" id="age" min="20" required>
+                </div>
+                <br>
+                <div>
+                    <label for="gender">성별</label>
+                    <input type="radio" name="gender" id="man" required>
+                    <label for="man" id="gender">남자</label>
+                    <input type="radio" name="gender" id="woman"  required>
+                    <label for="woman" id="gender">여자</label>
+                </div>
+                <br>
+                <label for="textbox" class="memo">요청사항</label>
+                <textarea name="textbox" id="textbox" cols="30" rows="10" placeholder="요청 사항 입력"></textarea>
+                <br>
+                <br>
+                <button type="submit">보내기</button>
+                <p>내용을 다시 한 번 확인해 주세요.</p>
+            </fieldset>
+        </form>
+    </div>
+</body>
+</html>

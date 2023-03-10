@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>네이버 로그인</title>
+<style>
+    body{
+    background-color:#f5f6f7;
+    
+}
+.select{
+    margin-top:5%;
+    margin-left:70%;
+ 
+}
+.form-group{
+    width:350px;
+    margin-left:auto;
+    margin-right:auto;
+}
+.btn.btn-primary{
+    border:1px solid #03c75b;
+    background-color: #03c75b;
+    width:350px;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.form-check{
+    display:flex;
+    flex-direction:row;
+    justify-content:center;
+}
+.easy-login{
+    font-weight:800;
+}
+.btn.btn-primary.btn-lg{
+    border:1px solid #03c75b;
+    background-color:white;
+    color:black;
+    font-size:80%;
+    width:170px;
+}
+.btn.btn-secondary.btn-lg{
+    border:1px solid #03c75b;
+    background-color:white;
+    color:black;
+    font-size:80%;
+    width:170px;
+}
+
+.login-button{
+    text-align:center;
+}
+.button-group{
+    text-align:center;
+}
+.footer{
+    margin:0 auto;
+    text-align:center;
+    bottom:5px;
+    color:gray;
+}
+img{
+    margin-top:60px;
+    width:20%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+</style>
+</head>
+<body>
+    <div class="select">
+        <select class="select-language">
+            <option>한국어</option>
+            <option>English</option>
+        </select>
+    </div>
+    
+    <div class="logo image">
+        <img src="naver.png">
+    </div>
+    <br><br>
+    <form>
+        <div class="form-group">
+          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="아이디">
+        </div>
+
+        <div class="form-group">
+          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="비밀번호">
+        </div>
+
+        <div class="login-button">
+        <div button type="login" class="btn btn-primary">로그인</button>
+        </div>
+    </div>
+    <div class="form-check">
+        <div>
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+        <label class="form-check-label" for="exampleCheck1">로그인 상태 유지</label>
+        </div>
+    </div>
+        
+      </form>
+
+    <hr width="350px" align="center">
+    <p class="easy-login" align="center">더욱 간편한 로그인</p>
+
+    <br>
+
+    <div class="button-group">
+    <div button type="button"  class="btn btn-primary btn-lg">QR코드 로그인</button>
+    </div>
+    <div button type="button" class="btn btn-secondary btn-lg">일회용 번호 로그인</button>
+    </div>
+</div>
+<br><br>
+    <footer class="footer">
+        <div class="footer-info">
+            아이디 찾기 | 비밀번호 찾기 | 회원가입
+        </div>
+    </footer>
+</body>
+</html>
