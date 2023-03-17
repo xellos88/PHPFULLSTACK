@@ -73,8 +73,21 @@ FROM employees as em
 		WHERE sl.to_date=DATE(99990101)
 		ORDER BY sl.salary desc LIMIT 10;
 		
+SELECT *
+FROM(
+		SELECT emp.emp_no
+		,CONCAT(emp.first_name,' ',emp.last_name)
+		,sal.salary
+		,RANK() over (ORDER BY salary DESC) rn
+FROM employees emp
+		INNER JOIN salaries sal
+		ON emp.emp_no=sal.emp_no
+		WHERE sal.to_date >=NOW()
+		)rnk
+WHERE rnk.rn <= 10;
+		
 6666666	
-SELECT dp.dept_name, CONCAT(last_name,' ',first_name) AS fullname, em.hire_date
+SELECT dp.dept_name, CONCAT(last_name,' ',first_name) AS fullname, em.hire_date, dm.dept_no
 FROM employees AS em
 		INNER JOIN 	dept_manager AS dm
 			ON em.emp_no = dm.emp_no
@@ -83,7 +96,6 @@ FROM employees AS em
 			GROUP BY dp.dept_name
 			HAVING COUNT(dm.to_date= '9999-01-01')
 ;
-
 77777777
 SELECT tl.title, AVG(sl.salary)
 FROM titles as tl
@@ -91,37 +103,64 @@ FROM titles as tl
 		ON sl.emp_no = tl.emp_no
 		WHERE tl.title='staff'
 		and sl.to_date>=NOW()
+		AND tl.to_date>=NOW()
 ;
+
 8888888
-select CONCAT(last_name,' ',first_name) AS fullname, em.hire_date, em.emp_no, dm.dept_no
+select CONCAT(em.last_name,' ',em.first_name) AS fullname, em.hire_date, em.emp_no, dm.dept_no
 FROM employees AS em
 	INNER JOIN dept_manager AS dm
 		ON em.emp_no= dm.emp_no
 		WHERE dm.to_date < '9999-01-01'
+		
+;
+select CONCAT(em.last_name,' ',em.first_name) AS fullname, em.hire_date, em.emp_no, dm.dept_no
+FROM employees AS em
+	INNER JOIN dept_manager AS dm
+		ON em.emp_no= dm.emp_no
+		WHERE dm.to_date != '9999-01-01'
 ;
 
 9999999 -- 9.현재 각 직급별 평균월급중 6만이상인 직급의 직급명, 평균월급(정수)를 내림차순 출력
-SELECT tl.title, CAST(avg(sl.salary) AS INT) 
+SELECT tl.title, CAST(avg(salary) AS INT) 
 FROM titles AS tl
 	INNER JOIN salaries as sl
 	ON tl.emp_no = sl.emp_no
-	WHERE avg(sl.slalary) >=60000
-	GROUP BY tl.title
-	ORDER BY  DESC
+		WHERE sl.salary>=60000
+		AND tl.to_date>=NOW()
+		GROUP BY tl.title
+		ORDER BY sl.salary DESC
 ;
+
+SELECT ti.title, truncate(avg(salary), 0) AS avg_s
+FROM titles AS ti
+	inner JOIN salaries AS sl
+	ON ti.emp_no = sl.emp_no
+		WHERE ti.to_date=DATE(99990101)
+			AND sl.to_date=DATE(99990101)
+			GROUP BY ti.title 	HAVING avg_s >=60000
+			ORDER BY avg_s DESC
+;
+SELECT ti.title, cast(avg(salary)AS decimal) AS avg_s
+FROM titles AS ti
+	inner JOIN salaries AS sl
+	ON ti.emp_no = sl.emp_no
+		WHERE ti.to_date=DATE(99990101)
+			AND sl.to_date=DATE(99990101)
+			GROUP BY ti.title 	HAVING avg_s >=60000
+			ORDER BY avg_s DESC
+;
+
+
 10
 SELECT tl.title, COUNT(*)
 FROM titles AS tl
 	INNER JOIN employees AS em
 		ON tl.emp_no=em.emp_no
 		WHERE em.gender='F'
+		AND tl.to_date =DATE(99990101)
 		GROUP BY tl.title
 ;
-
-
-
-
-
 11
 SELECT COUNT(*)
 FROM employees AS em
