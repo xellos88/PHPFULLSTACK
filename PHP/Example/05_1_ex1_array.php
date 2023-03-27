@@ -45,9 +45,70 @@
     //                 );
 
     //배열의 원소 삭제 : unset()
-    $arr_week = array("Sun","Mon","delete","Tue","Wed", "Thu", "Fri","Sat");
-        unset($arr_week[2]);
-        print_r($arr_week);
+    // $arr_week = array("Sun","Mon","delete","Tue","Wed", "Thu", "Fri","Sat");
+    //     unset($arr_week[2]);
+    //     print_r($arr_week);
 
-        echo($arr_week[2]);
+    //     echo($arr_week[2]);
+
+    //  중복되지 않는 원소를 반환 : array_diff()
+    // $arr_diff_1 = array("a", "b", "c");
+    // $arr_diff_2 = array("a", "b", "d");
+    // $array_diff = array_diff($arr_diff_1, $arr_diff_2);
+    // //배열1 값중에 배열2에 없는 값만 배열 형태로 반환
+    // print_r($array_diff);
+
+    //배열의 정렬 : asort(), arsort(), ksort(), krsort()
+    // $arr_asort = array("b", "a", "d", "c");
+    // $arr_asort_restult =  asort($arr_asort);
+    // print_r($arr_asort);
+
+    // $arr_arsort = array("b", "a", "d", "c");
+    // $arr_arsort_restult =  arsort($arr_arsort);
+    // print_r($arr_arsort);
+
+    //ksort
+
+    // $arr_ksort = array("key1" => "val1"
+    //                 ,"key3" => "val3"
+    //                 ,"key4" => "val4"
+    //                 ,"key2" => "val2");
+    // ksort($arr_ksort);  
+    // print_r($arr_ksort);
+
+    // //krsort
+    // $arr_krsort = array("key1" => "val1"
+    //                 ,"key3" => "val3"
+    //                 ,"key4" => "val4"
+    //                 ,"key2" => "val2");
+    // krsort($arr_krsort);  
+    // print_r($arr_krsort);
+    // //array의 사이즈를 반환하는 함수 :  couunt();
+    // echo count($arr_krsort);
+    
+    //foreach($array as $key => $val){}
+    //foreach($array as $val){}
+    // $arr1 = array("a" => "1"
+    //                 ,"b" => "2"
+    //                 ,"c" => "3"
+    //                 ,"d" => "4");
+    // foreach($arr1 as $i => $j)
+    // {
+    //     echo $i." : ". $j."\n";
+    // }
+    //foreach문을 이용해서 키가 "삭제"인 요소를 제거해주세요.
+    //if 문 사용, unset("삭제")x
+
+    $arr_ass_del= array("된장찌개"=> "파"
+                ,"볶음밥" =>"양파"
+                ,"삭제" => "값값"
+                ,"김치" => "마늘"
+                ,"비빔밥" => "참기름");
+            foreach($arr_ass_del as $key => $val);
+            if($val==="값값") {
+                    unset($arr_ass_del[$key]);
+            }
+            else{
+                echo $key." : ". $val."\n";
+            }
 ?>
