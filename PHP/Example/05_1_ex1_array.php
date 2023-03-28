@@ -104,12 +104,13 @@
                 ,"삭제" => "값값"
                 ,"김치" => "마늘"
                 ,"비빔밥" => "참기름");
+                
             foreach($arr_ass_del as $key => $val){
-            if($val==="값값") {
-                    unset($arr_ass_del[$key]);
+                if($val==="값값"){
+                        unset($arr_ass_del[$key]);
+                }
+                else{
+                    echo $key." : ". $val."\n";
+                }
             }
-            else{
-                echo $key." : ". $val."\n";
-            }
-        }
 ?>
