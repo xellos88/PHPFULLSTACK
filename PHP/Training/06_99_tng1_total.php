@@ -15,34 +15,32 @@
     // }
     // echo my_len($arr_base);
 
-    // function print_star($sss)
-    // {
-    //     for($i = 0; $i<$sss; $i++)
-    //     {
-    //         echo "*";
-    //     }
-    //     echo "\n";
-    // }
-    // print_star(1);
-    // print_star(2);
-    // print_star(3);
-    // print_star(4);
-    // print_star(5);
-
+    function print_star($sss)
+    {
+        for($i = 0; $i<$sss; $i++)
+        {
+            echo "*";
+        }
+        echo "\n";
+    }
     function print_star_rect($sss)
     {
-        for{$i = 0; $i < $sss; $i++)
-            {
-                function print_star($sss)
-                {
-                    for($j = 0; $i < $j; $j++)
-                    {
-                        echo "*";
-                    }
-                    echo "\n";
-                }
-            }
-            }
+        for($i = 0; $i<$sss; $i++)      
+        {
+            print_star($sss);
         }
-
+    }
+    function print_star_tri($sss)
+    {
+        for($i=1; $i<=$sss; $i++)
+        {
+            print_star($i);
+        }
+    }
+    print_star(5);
+    echo"\n";
+    print_star_rect(5);
+    echo"\n";
+    print_star_tri(5);
+    echo"\n";
 ?>
