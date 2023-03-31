@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Facebook</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      /* Global styles */
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f2f5;
+      }
+      /* Header styles */
+      #header {
+        background-color: #4267B2;
+        color: #ffffff;
+        padding: 10px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      #header h1 {
+        margin: 0;
+        font-size: 28px;
+      }
+      #header input[type="text"] {
+        padding: 5px;
+        font-size: 16px;
+        border: none;
+        border-radius: 20px;
+        width: 250px;
+      }
+      /* Main content styles */
+      #content {
+        display: flex;
+        justify-content: space-between;
+        margin: 20px;
+      }
+      #left-column {
+        background-color: #ffffff;
+        border-radius: 10px;
+        padding: 20px;
+        width: 65%;
+      }
+      #right-column {
+        background-color: #ffffff;
+        border-radius: 10px;
+        padding: 20px;
+        width: 30%;
+      }
+      /* Footer styles */
+      #footer {
+        background-color: #e4e6eb;
+        color: #606770;
+        padding: 10px 20px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <header id="header">
+      <h1>Facebook</h1>
+      <form>
+        <input type="text" placeholder="Search Facebook">
+      </form>
+    </header>
+    <div id="content">
+      <div id="left-column">
+        <p>Welcome to Facebook!</p>
+        <p>Connect with friends and the world around you on Facebook.</p>
+      </div>
+      <div id="right-column">
+        <h2>Sign up</h2>
+        <p>It's quick and easy.</p>
+        <form>
+          <input type="text" placeholder="First name"><br><br>
+          <input type="text" placeholder="Last name"><br><br>
+          <input type="text" placeholder="Email"><br><br>
+          <input type="password" placeholder="New password"><br><br>
+          <button>Sign up</button>
+        </form>
+      </div>
+    </div>
+    <footer id="footer">
+      <p>&copy; 2023 Facebook</p>
+    </footer>
+  </body>
+</html>
