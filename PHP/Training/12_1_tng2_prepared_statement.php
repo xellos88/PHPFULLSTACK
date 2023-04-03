@@ -16,12 +16,12 @@ $i1 = "9999-01-01";
 $i2 = 50000;
 $i3 = 5;
 $result = null;
-$stmt = $dbc->stmt_init();//statement를 셋팅
+
+$stmt = $dbc->stmt_init();//mysqli_stmt_prepare를 사용하기 위한 객체를 초기화 하고 리턴해 줍니다,
 $stmt->prepare("SELECT emp_no, salary FROM salaries WHERE to_date =? AND salary >=? ORDER BY salary DESC LIMIT ?");
 $stmt->bind_param("sii", $i1, $i2, $i3);
 $stmt->execute();
 $stmt->bind_result($emp_no, $emp_salary);
-
 // $result = $stmt->get_result();
 while ($stmt -> fetch()) {
     echo "$emp_no $emp_salary\n";
