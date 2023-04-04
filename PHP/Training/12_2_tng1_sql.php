@@ -9,49 +9,102 @@
 
 include_once("../Example/12_2_ex2_fnc_db_conn.php");
 
-$obj_conn = null; // PDO Class
-//DB Connect
-my_db_conn( $obj_conn );
-
-
 //1111111111111111111111111111
-$sql = "SELECT AVG(salary) FROM salaries WHERE to_date >=now()";
-$result = my_db_conn($sql);
-var_dump($result);
+// $sql=
+//     "SELECT "
+//     ." AVG(salary) "
+//     ." FROM "
+//     ." salaries "
+//     ." WHERE "
+//     ." to_date >= now()";
+
+// $obj_conn = null;
+// my_db_conn( $obj_conn );
+// //-----query 메소드로 하는 방법----
+// $stmt = $obj_conn->query( $sql );
+// $result = $stmt->fetchAll();
+// var_dump( $result) ;
+
+// //-----prepare 메소드로 하는 방법--
+// $stmt = $obj_conn->prepare( $sql );
+// $stmt = execute();
+// $result = $stmt->fetchAll();
+// var_dump( $result) ;
+// $obj_conn = null;
 
 //222222222222222222222222222
-$sql2 ="INSERT INTO employees("
-    ." emp_no "
-    ." ,birth_date  "
-    ." ,first_name "
-    ." ,last_name "
-    ." ,gender "
-    ." ,hire_date "
-    ." ) "
-    ." VALUES( "
-    ." :emp_no "
-    ." ,:birth_date  "
-    ." ,:first_name "
-    ." ,:last_name "
-    ." ,:gender "
-    ." ,:hire_date "
-    ." ) ";
+// $sql2 ="INSERT INTO employees("
+//     ." emp_no "
+//     ." ,birth_date "
+//     ." ,first_name "
+//     ." ,last_name "
+//     ." ,gender "
+//     ." ,hire_date "
+//     ." ) "
+//     ." VALUES( "
+//     ." :emp_no "
+//     ." ,:birth_date "
+//     ." ,:first_name "
+//     ." ,:last_name "
+//     ." ,:gender "
+//     ." ,:hire_date "
+//     ." ) ";
 
-$params = array(
-    ':emp_no' => '555555',
-    ':birth_date' => '9999-01-01',
-    ':first_name' => 'aaa',
-    ':last_name' => 'bbb',
-    ':gender' => 'M',
-    ':hire_date' => '9999-01-01'
-);
-$stmt = $obj_conn->prepare($sql2);
-$stmt->execute($params);
+// $arr_prepare = array(
+//     ":emp_no"       => 555555
+//     ,":birth_date"  => "9999-01-01"
+//     ,":first_name"  => "aaa"
+//     ,":last_name"   => "bbb"
+//     ,":gender"      => "M"
+//     ,":hire_date"   => "9999-01-01"
+// );
+// $obj_conn=null;
+// my_db_conn( $obj_conn );
+// $stmt=$obj_conn->prepare($sql2);
+// $stmt->execute( $arr_prepare ); 
+// $obj_conn->commit();
+// $obj_conn = null;
+
 
 
 //3333333333333333333333333333333333333
-$sql3 = "UPDATE employees"
+$sql3 = 
+    "UPDATE employees"
+    ." SET "
+    ." first_name = :first_name "
+    ." ,last_name = :last_name "
+    ." WHERE "
+    ." emp_no = :emp_no "
+    ;
+$arr_prepare = 
+    array(
+        ":first_name"   => "길동"
+        ,":last_name"   => "홍"
+        ,":emp_no"      => 555555
+    );
+$obj_conn=null;
+my_db_conn( $obj_conn );
+$stmt=$obj_conn->prepare($sql3);
+$stmt->execute( $arr_prepare ); 
+$obj_conn->commit();
+$obj_conn = null;
 
+//44444444444444444444444444
+$sql4=
+    "DELETE FROM employees"
+    ." WHERE "
+    ." emp_no = :emp_no "
+    ;
 
+$arr_prepare = 
+    array(
+        ":emp_no"      => 555555
+    );
+$obj_conn=null;
+my_db_conn( $obj_conn );
+$stmt=$obj_conn->prepare($sql4);
+$stmt->execute( $arr_prepare ); 
+$obj_conn->commit();
+$obj_conn = null;
 
 ?>
