@@ -47,7 +47,7 @@ function valueHand($hand) {
                 }
 
                 //$aceValue = (valueHand($hand) <= 10) ? $aceValue += 11 : $aceValue += 1 ;
-                echo "$aceValue" . PHP_EOL;
+                echo "$aceValue" . "\n";
 
                 break;
 
