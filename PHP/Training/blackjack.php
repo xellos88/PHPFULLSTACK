@@ -81,7 +81,7 @@ for ($i = 1; $i <= 2; $i++) {
     $playerHand[] = array_pop($deck);
     $dealerHand[] = array_pop($deck);
 }
-echo "********************************************\n";
+echo "*******************************************\n";
 echo "딜러: {$dealerHand[0]}" . "\n";
 echo "플레이어: " . implode(", ", $playerHand) . " ( 합계: " . valueHand($playerHand) . ")" . "\n";
 echo "********************************************\n";
