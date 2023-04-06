@@ -30,62 +30,93 @@
 // 	print "\n";
 // }
 // echo "끝!\n";
-// $Jack=10;
-// $Queen=10;
-// $King=10;
-// $Ace=1 or 11;
-// $val = array($Ace, 2, 3, 4, 5, 6, 7, 8, 9, 10, $Jack, $Queen, $King);
-// $val2 = array("Spade","Heart","Diamond","Club");
-// $deck = array();
 
 function buildDeck() {
-    
-    $suits = ['Clubs', 'Hearts', 'Spades', 'Diamonds'];
+    $suits = ['♣', '♥', '♠', '♦'];
     $cards = ['Ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King'];
-
     foreach ($cards as $card) {
         foreach ($suits as $suit) {
             $deck[] = "$card of $suit";
         }
     }
-
     shuffle($deck);
     return $deck;
 }
-class BlackJack
-{
-	private $arr_num;
-	private $arr_shape;
-	private $arr_deck;
 
-	// construct
-	public function __construct()
-	{
-		$this->arr_num = array( "A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K");
-		$this->arr_shape = array("♠", "♣", "♦", "♥");
-		$this->set_deck();
-	}
-
-	// set
-	private function set_deck()
-	{
-		// 카드 52장 덱에 셋팅
-		foreach( $this->arr_shape as $shape )
-		{
-			foreach( $this->arr_num as $num )
-			{
-				$this->arr_deck[] = $num.$shape;
-			}
-		}
-		// 덱 셔플
-		shuffle( $this->arr_deck );
-	}
-
-	public function debug()
-	{
-		var_dump( $this->arr_deck );
-	}
+function valueHand($hand) {
+    $value = 0;
+    $num_aces = 0;
+    foreach ($hand as $card) {
+        $cardArray = explode(' ', $card);
+        switch ($cardArray[0]) {
+            case 'Ace':
+                $num_aces++;
+                break;
+            case 'King':
+            case 'Queen':
+            case 'Jack':
+                $value += 10;
+                break;
+            default:
+                $value += $cardArray[0];
+                break;
+        }
+    }
+    for ($i = 0; $i < $num_aces; $i++) {
+        if ($value + 11 <= 21) {
+            $value += 11;
+        } else {
+            $value += 1;
+        }
+    }
+    return $value;
 }
-$obj_bj = new BlackJack();
-$obj_bj->debug();
+
+$deck = buildDeck();
+$dealerHand = [];
+$playerHand = [];
+
+// Initial deal
+for ($i = 1; $i <= 2; $i++) {
+    $playerHand[] = array_pop($deck);
+    $dealerHand[] = array_pop($deck);
+}
+echo "********************************************\n";
+echo "딜러: {$dealerHand[0]}" . "\n";
+echo "플레이어: " . implode(", ", $playerHand) . " ( 합계: " . valueHand($playerHand) . ")" . "\n";
+echo "********************************************\n";
+
+// Player turn
+while (valueHand($playerHand) < 21) {
+    echo "카드를 더 받으시겠습니까? (예 >> 1 / 아니오 >> 0) ";
+    $choice = readline();
+    if ($choice === '1') {
+        $playerHand[] = array_pop($deck);
+        echo "플레이어: " . implode(", ", $playerHand) . " ( 합계: " . valueHand($playerHand) . ")" . "\n";
+    } else {
+        break;
+    }
+}
+
+// Dealer turn
+if (valueHand($playerHand) > 21) {
+    echo "플레이어가 버스트되었습니다." . "\n";
+} else {
+    echo "딜러: " . implode(", ", $dealerHand) . " ( 합계: " . valueHand($dealerHand) . ")" . "\n";
+    while (valueHand($dealerHand) < 17) {
+        $dealerHand[] = array_pop($deck);
+        echo "딜러: " . implode(", ", $dealerHand) . " ( 합계: " . valueHand($dealerHand) . ")" . "\n";
+    }
+    if (valueHand($dealerHand) > 21) {
+        echo "딜러가 버스트되었습니다." . "\n";
+    } else {
+        if (valueHand($playerHand) > valueHand($dealerHand)) {
+            echo "플레이어 승리!" . "\n";
+        } elseif (valueHand($playerHand) < valueHand($dealerHand)) {
+            echo "딜러 승리!" . "\n";
+        } else {
+            echo "무승부!" . "\n";
+        }
+    }
+}
 ?>

@@ -1,12 +1,8 @@
 <?php 
-
-// This function will build the deck.
 function buildDeck() {
     
-    // Create an array for suits
-    $suits = ['Clubs', 'Hearts', 'Spades', 'Diamonds'];
+    $suits = ['♣', '♥', '♠', '◆'];
 
-    // Create an array for cards
     $cards = ['Ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King'];
 
     foreach ($cards as $card) {
@@ -15,40 +11,27 @@ function buildDeck() {
         }
     }
 
-    // Shuffle the deck & return
     shuffle($deck);
     return $deck;
 }
 
-// This function will output a player's hand.
 function echoHand($hand, $hidden = false) {
 
 }
 
-// This function will calculate the value of a hand.
 function valueHand($hand) {
-
     $value = 0;
-
     foreach ($hand as $card) {
-
         $cardArray = explode(' ', $card);
-
         switch ($cardArray[0]) {
             case 'Ace':
-                
-                // Refactor to ternary.
                 if (valueHand($hand) <= 10) {
                     $value += 11;
                 }
-
                 else {
                     $value += 1;
                 }
-
-                //$aceValue = (valueHand($hand) <= 10) ? $aceValue += 11 : $aceValue += 1 ;
                 echo "$aceValue" . "\n";
-
                 break;
 
             case 'King':
@@ -63,16 +46,11 @@ function valueHand($hand) {
                 $value += 10;
                 break;
 
-            case 'King':
-                $value += 10;
-                break;
-
             default:
                 $value += $card;
                 break;
-        }  // end switch
-    } // end foreach
-
+        }
+    }
     return $value;
 }
 
@@ -97,28 +75,28 @@ for ($i=1; $i <=2 ; $i++) {
 }
 
 // Echo the dealer hand, only showing the first card
-echo "Dealer showing: {$dealerHand[0]}" . PHP_EOL;
+echo "Dealer showing: {$dealerHand[0]}" . "\n";
 //echo "Value: " . valueHand($dealerHand) . PHP_EOL;
 
 
 // Echo player hand
-echo "You have: " . PHP_EOL;
+echo "You have: \n";
 foreach ($playerHand as $playerCard) {
-    echo "$playerCard" . PHP_EOL;
+    echo "$playerCard" ."\n";
 }
 
-echo "Value: " . valueHand($playerHand) . PHP_EOL;
+echo "Value: " . valueHand($playerHand) . "\n";
 
 // Allow player to "(H)it or (S)tay?" till they bust (exceed 21) or stay
 while ($choice != 'S') {
 
     if (valueHand($playerHand) > 21) {
-        echo "Busted!" . PHP_EOL;
+        echo "Busted!\n";
         exit(0);
     }
 
     elseif (valueHand($playerHand) == 21) {
-        echo "BlackJack! You Win!" . PHP_EOL;
+        echo "BlackJack! You Win!\n";
         exit(0);
     }
 
@@ -131,12 +109,12 @@ while ($choice != 'S') {
             $playerHand[] = array_pop($deck);
 
             // Echo player hand
-            echo "You have: " . PHP_EOL;
+            echo "You have: \n";
             foreach ($playerHand as $playerCard) {
-                echo "$playerCard" . PHP_EOL;
+                echo "$playerCard" . "\n";
             }
 
-            echo "Value: " . valueHand($playerHand) . PHP_EOL;
+            echo "Value: " . valueHand($playerHand) . "\n";
 
             break;
         
@@ -154,13 +132,13 @@ while ($choice != 'S') {
 while (true) {
 
     if (valueHand($dealerHand) > 21) {
-        echo "Dealer Busted!" . PHP_EOL;
+        echo "Dealer Busted!\n";
         exit(0);
     }
 
     elseif (valueHand($dealerHand) == 21) {
         echo "Dealer has: " . valueHand($dealerHand) . " and you have: " . valueHand($playerHand) . ". ";
-        echo "BlackJack! Dealer Wins!" . PHP_EOL;
+        echo "BlackJack! Dealer Wins!\n";
         exit(0);
     }
 
@@ -168,29 +146,28 @@ while (true) {
 
         $dealerHand[] = array_pop($deck);
 
-        echo "Dealer showing: " . PHP_EOL;
+        echo "Dealer showing: \n";
         foreach ($dealerHand as $dealerCard) {
-            echo "$dealerCard" . PHP_EOL;
+            echo "$dealerCard" . "\n";
         }
 
-        echo "Value: " . valueHand($dealerHand) . PHP_EOL;
+        echo "Value: " . valueHand($dealerHand) . "\n";
     }
 
     else {
         // Dealer stays; evaluate against value of player hand
         if (valueHand($dealerHand) >= valueHand($playerHand)) {
             echo "Dealer has: " . valueHand($dealerHand) . " and you have: " . valueHand($playerHand) . ". ";
-            echo "Dealer Wins!" . PHP_EOL;
+            echo "Dealer Wins!\n";
 
             exit(0);
         }
 
         else {
-            echo "You Win!" . PHP_EOL;
+            echo "You Win!\n";
             exit(0);
         }
     }
-
     sleep(1);
 }
 while(true) {
