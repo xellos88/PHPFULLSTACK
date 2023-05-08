@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        div {
+            width: 300px;
+            height: 300px;
+        }
+        canvas {
+            border: 3px solid black;
+        }
+    </style>
+    <title>Sign</title>
+</head>
+<body>
+    <div id="div1">
+        <canvas id="can1"></canvas>
+    </div>
+    <br>
+    <button id="btn1">저장</button>
+
+    <script>
+        const div1 = document.getElementById('div1');
+        const can1 = document.getElementById('can1');
+        const ctx = can1.getContext("2d");
+        let drawable = false;
+
+        // PC에서 서명을 할 경우 사용되는 이벤트입니다.
+        function draw(e) {
+            function getPosition() {
+                return {
+                    x: e.pageX - can1.offsetLeft,
+                    y: e.pageY - can1.offsetTop
+                };
+            }
+
+            switch(e.type) {
+                case "mousedown":
+                    drawable = true;
+                    ctx.beginPath();
+                    ctx.moveTo(getPosition().x, getPosition().y);
+                    break;
+                case "mousemove":
+                    if (drawable) {
+                        ctx.lineTo(getPosition().x, getPosition().y);
+                        ctx.stroke();
+                    }
+                    break;
+                case "mouseup":
+                case "mouseout":
+                    drawable = false;
+                    ctx.closePath();
+                    break;
+            }
+        }
+
+        can1.addEventListener("mousedown", draw);
+        can1.addEventListener("mousemove", draw);
+        can1.addEventListener("mouseup", draw);
+        can1.addEventListener("mouseout", draw);
+    </script>
+</body>
+</html>
