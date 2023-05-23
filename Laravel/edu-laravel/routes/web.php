@@ -150,3 +150,19 @@ Route::get('/makesign', function() {
 Route::get('/sign', function(){
     return "sign!!";
 })->name('sign')->middleware('signed');
+
+
+//----------
+// 컨트롤러
+//----------
+// 커맨드로 컨트롤러 생성: php artisan make:controller TestController
+use App\Http\Controllers\TestController;
+Route::get('/test', [TestController::class, 'index'])->name('tests.index');
+
+//커맨드로 컨트롤러 생성 : php artisan make:controller TestController --resource
+use App\Http\Controllers\TasksController;
+Route::resource('/tasks', TasksController::class);
+
+
+use App\Http\Controllers\BladeController;
+Route::get('/blade', [BladeController::class, 'index'])->name('blade.index');
