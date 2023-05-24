@@ -4,6 +4,10 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+
+//시더 (초기 데이터 생성): database\seeders의 각 클래스 파일 확인
+//팩토리(더미 데이터 생성): database\factories의 각 클래스 파일 확인
+
 return new class extends Migration
 {
     /**
@@ -13,14 +17,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('failed_jobs', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->string('uuid')->unique();
-            $table->text('connection');
-            $table->text('queue');
-            $table->longText('payload');
-            $table->longText('exception');
-            $table->timestamp('failed_at')->useCurrent();
+            $table->char('no',1)->unique();
+            $table->string('name',30)->unique();
+            $table->char('active_flg',1)->default('1');
         });
     }
 
@@ -31,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('failed_jobs');
+        Schema::dropIfExists('categories');
     }
 };
