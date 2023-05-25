@@ -163,6 +163,11 @@ Route::get('/test', [TestController::class, 'index'])->name('tests.index');
 use App\Http\Controllers\TasksController;
 Route::resource('/tasks', TasksController::class);
 
-
+//---------------
+// 블레이저 템플릿
+//---------------
 use App\Http\Controllers\BladeController;
 Route::get('/blade', [BladeController::class, 'index'])->name('blade.index');
+
+use App\Http\Controllers\BoardController;
+Route::resource('/board', BoardController::class);
